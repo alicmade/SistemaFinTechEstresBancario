@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SistemaFinTechEstresBancaria">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SistemaFinTechEstresBancaria.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
