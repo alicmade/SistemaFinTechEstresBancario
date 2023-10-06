@@ -1,11 +1,16 @@
 package org.example;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Lanzador {
     public void lanzdor(String[] args) {
+
+        String mensaje = "";
         Cuenta cuenta = new Cuenta(10000);
 
         // Crear hilos para depósitos
@@ -43,9 +48,16 @@ public class Lanzador {
 
         double saldoFinal = cuenta.obtenerSaldo();
         if (saldoFinal == 10000) {
-            System.out.println("La simulación se ha completado correctamente. Saldo final: " + saldoFinal + " euros.");
+            mensaje =  "La simulación se ha completado correctamente. Saldo final: " + saldoFinal + " euros.";
         } else {
-            System.out.println("La simulación ha fallado. Saldo final: " + saldoFinal + " euros.");
+            mensaje ="La simulación ha fallado. Saldo final: " + saldoFinal + " euros.";
+        }
+
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("registro.txt", true))) {
+            writer.write(mensaje + "\n"+ "Resgistro de operaciones: \n"+ cuenta.lista.toString() + "\n");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class Cuenta {
     private double saldo;
 
@@ -21,18 +23,22 @@ public class Cuenta {
     public Cuenta(double saldoInicial) {
         this.saldo = saldoInicial;
     }
+    ArrayList<String> lista = new ArrayList<String>();
 
     public synchronized void depositar(double cantidad) {
-        System.out.println("Depositar " + cantidad + " euros.");
+        String mensajeDepositar = "Depositar " + cantidad + " euros.\n";
+        lista.add(mensajeDepositar);
         saldo += cantidad;
     }
 
     public synchronized void retirar(double cantidad) {
         if (saldo >= cantidad) {
-            System.out.println("Retirar " + cantidad + " euros.");
+            String mensajeRetirar = "Retirar " + cantidad + " euros. \n";
+            lista.add(mensajeRetirar);
             saldo -= cantidad;
         } else {
-            System.out.println("Saldo insuficiente para el retiro de " + cantidad + " euros.");
+            String mensajeErrorRetirar = "Saldo insuficiente para el retiro de " + cantidad + " euros.\n";
+            lista.add(mensajeErrorRetirar);
         }
     }
 
